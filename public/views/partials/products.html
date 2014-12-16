@@ -1,0 +1,36 @@
+    <div data-ng-controller="ProductsController">
+        <div class="row">
+            <div class="large-2 columns">
+                <input type="text" placeholder="search..." data-ng-model="filter.name">
+                <button class="tiny">Filter</button>
+
+                <h6>Add a new Product</h6>
+                <p>
+                    <label>Name:</label>
+                    <input type="text" placeholder="name..." data-ng-model="newProduct.name">
+                </p>
+                <p>
+                    <label>Image (url):</label>
+                    <input type="text" placeholder="http://..." data-ng-model="newProduct.image_url">
+                </p>
+                <p>
+                    <label>Description:</label>
+                    <textarea data-ng-model="newProduct.description"></textarea>
+                </p>
+                <p>
+                    <label>Initial Quantity:</label>
+                    <input type="text" placeholder="Integer" data-ng-model="newProduct.initial_quantity">
+                </p>
+                <button class="tiny" data-ng-click="addProduct()">Create</button>
+
+            </div>
+            <div class="large-10 columns">
+                <div class="row left">
+                    <div data-ng-repeat="product in products | filter: filter.name" class="large-3 columns">
+                        <img ng-src="{{ product.image_url }}"/>
+                        <p>{{ product.name }} ({{product.initial_quantity}})</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

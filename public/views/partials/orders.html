@@ -1,0 +1,53 @@
+    <div data-ng-controller="OrdersController">
+        <div class="row">
+            <div class="large-6 columns" id="add_new_order">
+                <h2>Add a new order</h2>
+                <p>
+                    <label for="customer">Customer Name:</label>
+                    <select data-ng-model="newOrder.customer_name" data-ng-options="customer.name for customer in customers">
+                        <option value="">--choose name--</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="order">Order</label>
+                    <select data-ng-model="newOrder.quantity">
+                        <option value="">--choose quantity--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <select data-ng-model="newOrder.product_name" data-ng-options="product.name for product in products">
+                        <option value="">--choose product--</option>
+                    </select>
+                </p>
+                <p data-ng-bind="errors2"></p>
+                <button class="tiny" data-ng-click="addOrder()">Order</button>
+            </div>
+        </div>
+        <div id="products">
+            <div class="row">
+                <div class="large-6 columns">
+                    <input type="text" placeholder="search name..." data-ng-model="filter.name">
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Date Ordered</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="order in orders | filter:filter.name">
+                        <td data-ng-bind="order.customer_name"></td>
+                        <td data-ng-bind="order.product_name"></td>
+                        <td data-ng-bind="order.quantity"></td>
+                        <td data-ng-bind="order.date | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
